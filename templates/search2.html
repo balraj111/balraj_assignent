@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body{
+  background: #f2f2f2;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 100%;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  position: absolute;
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+.wrap{
+  width: 30%;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.container{
+  width: 90%;
+  margin: auto;
+}
+.search-box {
+  display: flex;
+  position: relative;
+  margin: 1em 0;
+}
+
+input.table-search-input {
+  width: 100%;
+  padding: 0.3em;
+  padding-left: 37px;
+  border: 1.5px solid #dadada;
+  border-radius: 5px;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+.search-box::before {
+  content: '';
+  position: absolute;
+  padding: 0 5px;
+  width: 25px;
+  height: 100%;
+  background: url(https://cdn4.iconfinder.com/data/icons/kripto-black-2/512/kripto-search-b.png) center center / 60% no-repeat;
+  background-color: #dadada;
+  z-index: 10;
+}
+
+
+</style>
+<script>
+    function search(){
+        var str=document.getElementById('str').value;
+        if(str.length>=3)
+        {
+            document.myform.submit();
+        }
+
+        return 0;
+
+    }
+</script>
+<body>
+<div class="container">
+    <div class="search-box">
+        <form class="nav-link" name="myform"  action = "http://localhost:8888/" method = "POST" enctype = "multipart/form-data">
+
+            <input class="table-search-input" id="str" name='string' value='{{string}}' autofocus="autofocus" onfocus="var temp_value=this.value; this.value=''; this.value=temp_value" type="text" onkeyup="search(this)" placeholder="Enter keyword.." val>
+
+        </form>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for item in items %}
+            <tr class="listitem">
+                <td>{{item.name}}</td>
+                <td>{{item.mname}}</td>
+                <td>{{item.sname}}</td>
+            </tr>
+        {% endfor %}
+
+        <tbody>
+    </table>
+</div>
+</body>
+</html>
